@@ -6,33 +6,33 @@
             - push -> OK
             - pop -> OK
         - overloads : 
-            - operateurs relationnels
+            - operateurs relationnels -> OK
 
     -   MAP
-        -   Iterateurs
+        -   Iterateurs:
             - begin
             - end
             - rbegin
             - rend
-        - Capacity
+        - Capacity:
             - empty
             - size
             - max_size
-        - Element access
+        - Element access:
             - operator[]
-        - Modifiers
+        - Modifiers:
             - insert
             - erase
             - swap
             - clear
-        - Observers
+        - Observers:
             - key_comp
             - value_comp
-        - Operations
+        - Operations:
             - find
             - count
             - lower_bound
             - upper_bound
             - equal_range
-        - Allocator
+        - Allocator:
             get_allocator
