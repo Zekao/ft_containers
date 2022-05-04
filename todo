@@ -1,10 +1,10 @@
     -   STACK
         - fonctions membres : 
-            - empty
-            - size
-            - top
-            - push
-            - pop
+            - empty -> OK
+            - size -> OK
+            - top -> OK
+            - push -> OK
+            - pop -> OK
         - overloads : 
             - operateurs relationnels
 
