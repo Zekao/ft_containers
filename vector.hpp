@@ -40,67 +40,67 @@ namespace ft
 			// difference type
 			// size_type
 			/*									Capacity member functions											*/
-			// size_t	size(void) const
-			// {
-			// 	return (this->_size);
-			// }
-			// size_t	max_size(void) const
-			// {
-			// 	return (this->_size);
-			// }
-			// void	resize(size_t n, value_type val = value_type()) const;
-			// bool	empty(void) const
-			// {
-			// 	if (this->_size != 0)
-			// 		return (true);
-			// 	else
-			// 		return (false);
-			// }
-			// void	reserve (size_type n)
-			// {
+			size_t	size(void) const
+			{
+				return (this->_size);
+			}
+			size_t	max_size(void) const
+			{
+				return (this->_size);
+			}
+			void	resize(size_t n, value_type val = value_type()) const;
+			bool	empty(void) const
+			{
+				if (this->_size != 0)
+					return (true);
+				else
+					return (false);
+			}
+			void	reserve (size_type n)
+			{
 			// 	/*				differents cas				*/
-			// 		// - si n > la capacity la fonction realloue la taille demandée pour augmenter la capacity a n
-			// 		// - dans les autres cas on ne realloue pas et on supprime juste la quantitée d'elements apres n (vector::erase)
-			// 	if (n > this->_capacity)
-			// 	{
-			// 		vector::resize(n, this->_vector);
-			// 		// ft::resize(this->_vector);
-			// 	}
-			// 	if (n < this->_capacity)
-			// 	{
-			// 		while (n < this->_size)
-			// 		{
-			// 			vector::erase(n);
-			// 			ft::erase(this->_vector[n]);
-			// 			n--;
-			// 		}
-			// 	}
-			// };
-			// /*											element access												*/
-			// reference operator[](size_type n)
-			// {
-			// 	return (this->_vector[n]);
-			// };
-			// const_reference operator[](size_type n) const
-			// {
-			// 	return (this->_vector[n]);
-			// };
-			// reference 		at(size_t n) // return a reference to the element n in the vector -> throw execption if n > size
-			// {
-			// 	if (n > this->_size)
-			// 		throw std::out_of_range("vector::at");
-			// 	return (this->_vector[n]);
-			// };
-			// const_reference at(size_type n) const // return a reference to the element n in the vector
-			// {
-			// 	if (n > this->_size)
-			// 		throw std::out_of_range("vector::at");
-			// 	return (this->_vector[n]);
-			// };
-			// reference		front(); // return a reference to the first element in the vector
-			// const_reference	front();
-			// reference		back(); // return a reference to the last element in the vector
-			// const_reference	back();
+					// - si n > la capacity la fonction realloue la taille demandée pour augmenter la capacity a n
+					// - dans les autres cas on ne realloue pas et on supprime juste la quantitée d'elements apres n (vector::erase)
+				if (n > this->_capacity)
+				{
+					vector::resize(n, this->_vector);
+					// ft::resize(this->_vector);
+				}
+				if (n < this->_capacity)
+				{
+					while (n < this->_size)
+					{
+						vector::erase(n);
+						ft::erase(this->_vector[n]);
+						n--;
+					}
+				}
+			};
+			/*											element access												*/
+			reference operator[](size_type n)
+			{
+				return (this->_vector[n]);
+			};
+			const_reference operator[](size_type n) const
+			{
+				return (this->_vector[n]);
+			};
+			reference 		at(size_t n) // return a reference to the element n in the vector -> throw execption if n > size
+			{
+				if (n > this->_size)
+					throw std::out_of_range("vector::at");
+				return (this->_vector[n]);
+			};
+			const_reference at(size_type n) const // return a reference to the element n in the vector
+			{
+				if (n > this->_size)
+					throw std::out_of_range("vector::at");
+				return (this->_vector[n]);
+			};
+			reference		front(); // return a reference to the first element in the vector
+			const_reference	front();
+			reference		back(); // return a reference to the last element in the vector
+			const_reference	back();
 			/*												modifiers												*/
 
 		
