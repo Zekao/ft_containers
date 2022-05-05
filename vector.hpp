@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/01 23:13:30 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/05 00:01:04 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,35 @@
 
 # include <vector>
 # include <memory>
+# include <stdexcept>
 
 namespace ft
 {
 	
-	template< class T > struct allocator;
-	template < class T, class Alloc = std::allocator<T> > // generic template
+	template < class T, class Allocator = std::allocator<T> > // generic template
 	class vector
 	{
-		// std::allocator a;
 		public:
-			typedef				T 														value_type;
-			typedef				allocator											allocator_type;
+			typedef				T														value_type;
+			typedef				Allocator												allocator_type;
 			typedef	typename 	allocator_type::reference								reference;
 			typedef	typename 	allocator_type::const_reference							const_reference;	
 			typedef	typename 	allocator_type::pointer									pointer;
 			typedef	typename	allocator_type::const_pointer							const_pointer;
-			// typedef				ft::random_access_iterator<value_type>					iterator;
-			// typedef				ft::random_access_iterator<const value_type>			const_iterator;
-			// typedef				ft::reverse_iterator<value_type>						reverse_iterator;
-			// typedef				ft::reverse_iterator<const value_type>					const_reverse_iterator;
+			typedef				ft::random_access_iterator<value_type>					iterator;
+			typedef				ft::random_access_iterator<const value_type>			const_iterator;
+			typedef				ft::reverse_iterator<iterator>						reverse_iterator;
+			typedef				ft::reverse_iterator<const_iterator>					const_reverse_iterator;
 			typedef typename	Allocator::size_t										size_type;
 			typedef typename	Allocator::ptrdiff_t									difference_type;
-			// difference type
-			// size_type
 			/*									Capacity member functions											*/
-			size_t	size(void) const
+			size_type	size(void) const
 			{
 				return (this->_size);
 			}
-			size_t	max_size(void) const
+			size_type	max_size(void) const
 			{
-				return (this->_size);
+				return (this->_allocator.max_size());
 			}
 			void	resize(size_t n, value_type val = value_type()) const;
 			bool	empty(void) const
@@ -122,41 +119,33 @@ namespace ft
 template< class T, class Alloc >
 bool operator==( const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs )
 {
-	if (lhs == rhs)
-		return (true);
-	return (false);
+	if (lhs.size() == rhs.size())
+		return (false);
+	return(std::equal(lhs.begin(), rhs.begin()));
 }
 
 template< class T, class Alloc >
 bool operator!=( const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs )
 {
-	if (lhs != rhs)
-		return (true);
-	return (false);
+	return (!(lhs == rhs));
 }
 
 template< class T, class Alloc >
 bool operator<( const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs )
 {
-	if (lhs < rhs)
-		return (true);
-	return (false);
+	return (std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
 }
 
 template< class T, class Alloc >
 bool operator<=( const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs )
 {
-	if (lhs < rhs)
-		return (true);
-	return (false);
+	return (!(rhs < lhs));
 }
 
 template< class T, class Alloc >
 bool operator>( const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs )
 {
-	if (lhs > rhs)
-		return (true);
-	return (false);
+	return (rhs < lhs);
 }
 
 template< class T, class Alloc >
