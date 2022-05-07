@@ -36,3 +36,34 @@
             - equal_range
         - Allocator:
             get_allocator
+    -   VECTOR
+        - Iterateurs:
+            - begin
+            - end
+            - rbegin
+            - rend
+        - Capacity:
+            - size -> OK
+            - max_size -> OK
+            - resize -> WIP
+            - capacity -> OK
+            - empty -> OK
+            - reserve -> WIP
+        - Element access:
+            - operator[]
+            - at
+            - front
+            - back
+        - Modifiers:
+            - assign
+            - push_back
+            - pop_back
+            - insert
+            - erase
+            - swap
+            - clear
+        - Allocator:
+            - get_allocator
+        - Non-member function overloads:
+            - relational operators
+            - swap
