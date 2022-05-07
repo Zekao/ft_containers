@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/07 22:43:52 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/08 00:54:59 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,23 +135,6 @@ namespace ft
 						this->_size = n;
 				}				
 			}
-			// void	reserve (size_type n)
-			// {
-			// 	if (n > this->_capacity)
-			// 	{
-			// 		// vector::resize(n, this->_vector);
-			// 		// ft::resize(this->_vector);
-			// 	}
-			// 	else if (n < this->_capacity)
-			// 	{
-			// 		while (n < this->_size)
-			// 		{
-			// 			// vector::erase(n);
-			// 			// ft::erase(this->_vector[n]);
-			// 			n--;
-			// 		}
-			// 	}
-			// };
 			/* ===================================================================================================== */
 
 			/*											element access												*/
@@ -175,10 +158,22 @@ namespace ft
 					throw std::out_of_range("vector::at");
 				return (this->_vector[n]);
 			};
-			// reference		front(); // return a reference to the first element in the vector
-			// const_reference	front();
-			// reference		back(); // return a reference to the last element in the vector
-			// const_reference	back();
+			reference		front(void) // return a reference to the first element in the vector
+			{
+				return (this->_vector[0]);
+			}; 
+			const_reference	front(void) const
+			{
+				return (this->_vector[0]);
+			};
+			reference		back(void) // return a reference to the last element in the vector
+			{
+				return (this->_vector[_size - 1]);
+			}; 
+			const_reference	back(void) const
+			{
+				return (this->_vector[_size - 1]);
+			};
 			/* ===================================================================================================== */
 			
 			/*												modifiers												*/

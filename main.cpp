@@ -4,7 +4,6 @@
 #include "vector.hpp"
 #include <iostream>
 #include "stack.hpp"
-#define Buffer std::string
 int	main(void)
 {
     std::cout << "===== real vector =====" << std::endl;

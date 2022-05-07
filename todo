@@ -52,8 +52,8 @@
         - Element access:
             - operator[] -> OK
             - at -> OK
-            - front
-            - back
+            - front -> OK
+            - back -> OK
         - Modifiers:
             - assign
             - push_back
