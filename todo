@@ -45,13 +45,13 @@
         - Capacity:
             - size -> OK
             - max_size -> OK
-            - resize -> WIP
+            - resize -> OK
             - capacity -> OK
             - empty -> OK
-            - reserve -> WIP
+            - reserve -> OK
         - Element access:
-            - operator[]
-            - at
+            - operator[] -> OK
+            - at -> OK
             - front
             - back
         - Modifiers:
@@ -63,7 +63,7 @@
             - swap
             - clear
         - Allocator:
-            - get_allocator
+            - get_allocator -> OK
         - Non-member function overloads:
             - relational operators
             - swap

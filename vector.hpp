@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/07 18:41:52 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/07 22:43:52 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,51 @@ namespace ft
 			{
 				return (this->_size);
 			}
+
 			size_type	max_size(void) const
 			{
 				return (this->_allocator.max_size());
 			}
-			void	resize(size_t n, value_type val = value_type()) const
+
+			size_type	capacity(void) const
 			{
-				(void)val;
+				return (this->_capacity);
+			}
+
+			bool	empty(void) const
+			{
+				if (this->_size != 0)
+					return (false);
+				else
+					return (true);
+			}
+
+			void reserve(size_type n) 
+			{
+											/*				differents cas				*/
+					// - si n > la capacity la fonction realloue la taille demandée pour augmenter la capacity a n
+					// - dans les autres cas on ne realloue pas et on supprime juste la quantitée d'elements apres n (vector::erase)
+				if (n > this->max_size())
+					throw std::length_error("vector::reserve");
+				else if (n > this->_capacity)
+				{
+					pointer tmp = this->_allocator.allocate(n);
+					if (this->_capacity > 0) 
+					{
+						for (size_type i = 0; i < this->_size; i++)
+						{
+							this->_allocator.construct(&tmp[i], this->_vector[i]);
+							this->_allocator.destroy(&this->_vector[i]);
+						}
+						this->_allocator.deallocate(this->_vector, this->_capacity);
+					}
+					this->_capacity = n;
+					this->_vector = tmp;
+				}
+			}
+			
+			void	resize(size_t n, value_type val = value_type())
+			{
 				if (n < this->_size)
 				{
 					for (size_type i = n; i < this->_size; i++)
@@ -86,38 +124,34 @@ namespace ft
 					}
 					this->_size = n;
 				}
-			}
-			size_type	capacity(void) const
-			{
-				return (this->_capacity);
-			}
-			bool	empty(void) const
-			{
-				if (this->_size != 0)
-					return (false);
-				else
-					return (true);
-			}
-			void	reserve (size_type n)
-			{
-			// 	/*				differents cas				*/
-					// - si n > la capacity la fonction realloue la taille demandée pour augmenter la capacity a n
-					// - dans les autres cas on ne realloue pas et on supprime juste la quantitée d'elements apres n (vector::erase)
-				if (n > this->_capacity)
+				else if (n > this->_size)
 				{
-					// vector::resize(n, this->_vector);
-					// ft::resize(this->_vector);
-				}
-				else if (n < this->_capacity)
-				{
-					while (n < this->_size)
-					{
-						// vector::erase(n);
-						// ft::erase(this->_vector[n]);
-						n--;
-					}
-				}
-			};
+						if (n > this->_size * 2)
+							this->reserve(n);
+						else 
+							this->reserve (this->_size * 2);
+						for (size_type i = this->_size; i < n; i++)
+								this->_allocator.construct(&this->_vector[i], val);
+						this->_size = n;
+				}				
+			}
+			// void	reserve (size_type n)
+			// {
+			// 	if (n > this->_capacity)
+			// 	{
+			// 		// vector::resize(n, this->_vector);
+			// 		// ft::resize(this->_vector);
+			// 	}
+			// 	else if (n < this->_capacity)
+			// 	{
+			// 		while (n < this->_size)
+			// 		{
+			// 			// vector::erase(n);
+			// 			// ft::erase(this->_vector[n]);
+			// 			n--;
+			// 		}
+			// 	}
+			// };
 			/* ===================================================================================================== */
 
 			/*											element access												*/
