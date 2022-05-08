@@ -31,10 +31,18 @@ namespace ft
 
 			/*												constructors											*/
 		
-	
+			random_access_iterator(void) : _p() {return;};
+			random_access_iterator(pointer p) : _p(p) {return;};
+			random_access_iterator(const random_access_iterator& cpy) : _p(cpy._p) {return;};
+			pointer base(void) const {return this->_p;};
+
 			/* ===================================================================================================== */
 				
+			/*												operators												*/
 
+			//				Do all expresions of RandomAccessIterator
+
+			/* ===================================================================================================== */
 		private:
 			pointer	_p;
 	};
