@@ -30,6 +30,7 @@ int	main(void)
 
     std::cout << "=====  my vector =====" << std::endl;
     ft::vector<int> b;
+    ft::vector<int>::iterator ft_it;
     std::cout << "is it empty? : " << b.empty() << std::endl;
     std::cout << "size : " << b.size() << std::endl;
     std::cout << "max size : " << b.max_size() << std::endl;

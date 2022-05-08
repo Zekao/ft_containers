@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/08 01:20:03 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/08 14:49:13 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include <memory>
 # include <stdexcept>
 # include <iostream>
-// # include "iterators/iterators_traits.hpp"
+# include "iterators/iterators_traits.hpp"
+# include "iterators/random_access_iterator.hpp"
 
 namespace ft
 {
@@ -32,8 +33,8 @@ namespace ft
 			typedef	typename 	allocator_type::const_reference							const_reference;	
 			typedef	typename 	allocator_type::pointer									pointer;
 			typedef	typename	allocator_type::const_pointer							const_pointer;
-			// typedef				std::random_access_iterator<value_type>						iterator;
-			// typedef				ft::random_access_iterator<const value_type>			const_iterator;
+			typedef				ft::random_access_iterator<value_type>						iterator;
+			typedef				ft::random_access_iterator<const value_type>			const_iterator;
 			// typedef				ft::reverse_iterator<iterator>						reverse_iterator;
 			// typedef				ft::reverse_iterator<const_iterator>					const_reverse_iterator;
 			typedef typename	Allocator::size_type										size_type;

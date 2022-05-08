@@ -65,5 +65,7 @@
         - Allocator:
             - get_allocator -> OK
         - Non-member function overloads:
-            - relational operators
+            - relational operators 
             - swap
+        - random_access_iterator:
+            - operators -> OK
