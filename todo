@@ -67,5 +67,8 @@
         - Non-member function overloads:
             - relational operators 
             - swap
-        - random_access_iterator:
-            - operators -> OK
+    ITERATORS
+        - random_access_iterator -> OK
+        - iterators_traits -> OK
+        - iterator -> OK
+        - reverse_iterator -> TODO
