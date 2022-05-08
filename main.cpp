@@ -4,6 +4,10 @@
 #include "vector.hpp"
 #include <iostream>
 #include "stack.hpp"
+#include "iterators/iterator.hpp"
+#include "iterators/iterators_traits.hpp"
+#include "iterators/random_access_iterator.hpp"
+
 int	main(void)
 {
     std::cout << "===== real vector =====" << std::endl;
@@ -17,7 +21,12 @@ int	main(void)
     std::cout << "capacity of vector : " << a.capacity() << std::endl;
     a.reserve(15);
     a.resize(16);
+    std::cout << "size before: " << a.size() << std::endl;
+    a.clear();
+    a.assign(12, 100);
+    std::cout << "size after: " << a.size() << std::endl;
     std::cout << "new capacity of vector : " << a.capacity() << std::endl;
+    std::cout << "value of first element : " << a.at(0) << std::endl;
 
     std::cout << "=====  my vector =====" << std::endl;
     ft::vector<int> b;
@@ -28,5 +37,8 @@ int	main(void)
     b.reserve(15);
     b.resize(16);
     std::cout << "new capacity of vector : " << b.capacity() << std::endl;
+    b.clear();
+    b.assign(12, 100);
+    std::cout << "value of first element : " << b.at(0) << std::endl;
     // std::cout << "capacity of vector : " << b.capacity() << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/08 00:54:59 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/08 01:20:03 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,8 @@ namespace ft
 						for (size_type i = this->_size; i < n; i++)
 								this->_allocator.construct(&this->_vector[i], val);
 						this->_size = n;
-				}				
+				}		
+				std::cout << "value of size : " << _size << std::endl;		
 			}
 			/* ===================================================================================================== */
 
@@ -178,14 +179,27 @@ namespace ft
 			
 			/*												modifiers												*/
 
-		
-		
-		// template <class InputIterator>
-		// explicit vector (const allocator_type& alloc = allocator_type()); // default constructor
-		// explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()); // fill constructor
-        // vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type()); // range constructor
-		// vector (const vector &x){ *this = x; } // copy constructor
-		
+			template <class InputIterator>
+  			void assign (InputIterator first, InputIterator last)
+			{
+				// TO DO
+				(void)first;
+				(void)last;
+			}
+			void assign (size_type n, const value_type& val) // Assigns new contents to the vector, replacing its current contents, and modifying its size accordingly.
+			{
+				clear();
+				reserve(n);
+				// insert(begin(), n, val); // BEGIN -> DO ITERATORS
+				
+			}
+
+			void	clear(void)
+			{
+				for (size_type i = 0; i < _size; i++)
+					this->_allocator.destroy(&this->_vector[i]);
+				this->_size = 0;
+			}
 			/* ===================================================================================================== */
 		
 			/*												allocator												*/
