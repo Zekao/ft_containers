@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/08 19:16:26 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/09 11:15:36 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,53 @@ namespace ft
 			}
 			
 			/* ===================================================================================================== */
+			/*													Iterators											 */
+			/* ===================================================================================================== */
 
-			/*									Capacity member functions											*/
+			iterator begin(void)
+			{
+				return (iterator(this->_vector));
+			}
+			
+			const_iterator begin(void) const
+			{
+				return (const_iterator(this->_vector));
+			}
+
+			iterator end(void)
+			{
+				return (iterator(this->_vector + this->_size));
+			}
+			
+			const_iterator end(void) const
+			{
+				return (const_iterator(this->_vector + this->_size));
+			}
+			
+			reverse_iterator rbegin(void)
+			{
+				return (reverse_iterator(this->_vector + this->_size));
+			}
+
+			const_reverse_iterator rbegin(void) const
+			{
+				return (const_reverse_iterator(this->_vector + this->_size));
+			}
+			
+			reverse_iterator rend(void)
+			{
+				return (reverse_iterator(this->_vector));
+			}
+
+			const_reverse_iterator rend(void) const
+			{
+				return (const_reverse_iterator(this->_vector));
+			}
+
+			/* ===================================================================================================== */
+			/*										Capacity member functions										 */
+			/* ===================================================================================================== */
+
 			size_type	size(void) const
 			{
 				return (this->_size);
@@ -191,6 +236,7 @@ namespace ft
 			{
 				clear();
 				reserve(n);
+				(void)val;
 				// insert(begin(), n, val); // BEGIN -> DO ITERATORS
 				
 			}

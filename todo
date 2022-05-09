@@ -38,10 +38,10 @@
             get_allocator
     -   VECTOR
         - Iterateurs:
-            - begin
-            - end
-            - rbegin
-            - rend
+            - begin -> TODO
+            - end -> TODO
+            - rbegin -> TODO
+            - rend -> TODO
         - Capacity:
             - size -> OK
             - max_size -> OK
