@@ -40,6 +40,12 @@ int	main(void)
     std::cout << "new capacity of vector : " << b.capacity() << std::endl;
     b.clear();
     b.assign(12, 100);
+    ft_it = b.begin();
+    std::cout << "========================= DEBUG =========================" << std::endl;
+    b.insert(b.begin(), 42);
+    std::cout << "OK" << std::endl;
+    // b.insert(ft_it, 42);
+    std::cout << "OK" << std::endl;
     std::cout << "value of first element : " << b.at(0) << std::endl;
     // std::cout << "capacity of vector : " << b.capacity() << std::endl;
 }

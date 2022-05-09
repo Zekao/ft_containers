@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/09 11:15:36 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/09 15:40:20 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,8 +222,8 @@ namespace ft
 				return (this->_vector[_size - 1]);
 			};
 			/* ===================================================================================================== */
-			
-			/*												modifiers												*/
+			/*													modifiers										 	 */
+			/* ===================================================================================================== */
 
 			template <class InputIterator>
   			void assign (InputIterator first, InputIterator last)
@@ -236,8 +236,7 @@ namespace ft
 			{
 				clear();
 				reserve(n);
-				(void)val;
-				// insert(begin(), n, val); // BEGIN -> DO ITERATORS
+				insert(begin(), n, val); // BEGIN -> DO ITERATORS
 				
 			}
 
@@ -247,9 +246,93 @@ namespace ft
 					this->_allocator.destroy(&this->_vector[i]);
 				this->_size = 0;
 			}
+
+			void	pop_back()
+			{
+				if (this->_size > 0)
+				{
+					this->_allocator.destroy(&this->_vector[this->_size - 1]);
+					this->_size--;
+				}
+			}
+			
+			iterator insert(iterator position, const value_type &val)
+			{
+				difference_type pos = position - this->_vector;
+				
+				reserve(this->_size + 1);
+				for (difference_type i = this->_size; i > pos; i--)
+				{
+					this->_allocator.construct(&this->_vector[i], this->_vector[i - 1]);
+					this->_allocator.destroy(&this->_vector[i - 1]);
+				}
+				this->_allocator.construct(&this->_vector[pos], val);
+				this->_size++;
+				return (&this->_vector[pos]);
+			} // single element
+
+			void insert (iterator position, size_type n, const value_type& val)			
+			{
+				std::cout << "value of n : " << n << std::endl;
+				std::cout << "value of value type : " << val << std::endl;
+				std::cout << "DEBUG2" << std::endl;
+				if (!n)
+					throw std::invalid_argument("n");
+				difference_type pos = this->_vector - position;
+
+				if (n + this->_size > this->_capacity)
+				{
+					if (this->_size + n > this->_size * 2)
+						reserve(this->_size + n);
+					else
+						reserve(this->_size * 2);
+				}
+				for (difference_type i = this->_size; i > pos; i--)
+				{
+					this->_allocator.construct(&this->_vector[i + n - 1], this->_vector[i - 1]);
+					this->_allocator.destroy(&this->_vector[i - 1]);
+				}
+				for (difference_type i = 0; i < n; i++)
+				{
+					this->_allocator.construct(&this->_vector[pos + i], val);
+				}
+				this->_size += n;
+				
+			} // fill
+			
+			template<class InputIterator>
+			void	insert(iterator position, InputIterator first, InputIterator last)
+			{
+				std::cout << "DEBUG3" << std::endl;
+				(void)position;
+				(void)first;
+				(void)last;
+			}
+
+			iterator erase(iterator position)
+			{
+				difference_type pos = this->_vector - position;
+				if (pos > 0)
+					this->_allocator.destroy(&this->_vector[pos - 1]);
+				return (&this->_vector[pos]);
+			}
+
+			iterator erase(iterator first, iterator last)
+			{
+				size_type	tmp = last - first;
+				if (pos > 0)
+				{
+					for(difference_type i = this->_size; i > 0; i--)
+					{
+						this->_allocator.destroy(&this->_vector[i]);				
+						this->_allocator.construct(&this->_vector[i], this->_vector[i + 1]);
+					}	
+				}
+				return (&this->_vector[pos]);
+			}
 			/* ===================================================================================================== */
-		
-			/*												allocator												*/
+			/*													allocator										 	 */
+			/* ===================================================================================================== */
 		
 			allocator_type get_allocator() const
 			{

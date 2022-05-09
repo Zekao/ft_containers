@@ -57,11 +57,11 @@
         - Modifiers:
             - assign
             - push_back
-            - pop_back
-            - insert
-            - erase
+            - pop_back -> OK
+            - insert -> OK -> OK -> TODO
+            - erase -> OK
             - swap
-            - clear
+            - clear -> OK
         - Allocator:
             - get_allocator -> OK
         - Non-member function overloads:
