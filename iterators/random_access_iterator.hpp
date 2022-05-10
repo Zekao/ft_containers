@@ -101,6 +101,35 @@ namespace ft
 				return (this->_p - rhs._p);
 			}
 			/* ===================================================================================================== */
+			bool operator==(const random_access_iterator& op) const 
+			{
+				return (this->_p == op._p);
+			};
+			bool operator!=(const random_access_iterator& op) const 
+			{
+				return (this->_p != op._p);
+			};
+			bool operator<(const random_access_iterator& op) const 
+			{
+				return (this->_p < op._p);}
+			;
+			bool operator<=(const random_access_iterator& op) const 
+			{
+				return (this->_p <= op._p);
+			};
+			bool operator>(const random_access_iterator& op) const 
+			{
+				return (this->_p > op._p);}
+			;
+			bool operator>=(const random_access_iterator& op) const 
+			{
+				return (this->_p >= op._p);
+			};
+		
+			reference operator[](const difference_type n) const 
+			{
+				return (this->_p[n]);
+			};
 		private:
 			pointer	_p;
 	};

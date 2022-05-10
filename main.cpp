@@ -14,7 +14,6 @@ int	main(void)
     std::vector<int> a;
     std::vector<int>::iterator  std_it;
 
-    std_it = a.begin();
     std::cout << "is it empty? : " << a.empty() << std::endl;
     std::cout << "size : " << a.size() << std::endl;
     std::cout << "max size : " << a.max_size() << std::endl;
@@ -26,6 +25,8 @@ int	main(void)
     a.assign(12, 100);
     std::cout << "size after: " << a.size() << std::endl;
     std::cout << "new capacity of vector : " << a.capacity() << std::endl;
+    std_it = a.begin();
+    a.insert(std_it, 42);
     std::cout << "value of first element : " << a.at(0) << std::endl;
 
     std::cout << "=====  my vector =====" << std::endl;
@@ -40,12 +41,10 @@ int	main(void)
     std::cout << "new capacity of vector : " << b.capacity() << std::endl;
     b.clear();
     b.assign(12, 100);
+    std::cout << "size after: " << a.size() << std::endl;
     ft_it = b.begin();
     std::cout << "========================= DEBUG =========================" << std::endl;
-    b.insert(b.begin(), 42);
-    std::cout << "OK" << std::endl;
-    // b.insert(ft_it, 42);
-    std::cout << "OK" << std::endl;
+    b.insert(ft_it, 42);
     std::cout << "value of first element : " << b.at(0) << std::endl;
     // std::cout << "capacity of vector : " << b.capacity() << std::endl;
 }

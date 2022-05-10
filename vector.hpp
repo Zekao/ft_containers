@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/09 15:40:20 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/10 01:59:12 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,7 +319,7 @@ namespace ft
 
 			iterator erase(iterator first, iterator last)
 			{
-				size_type	tmp = last - first;
+				size_type	pos = last - first;
 				if (pos > 0)
 				{
 					for(difference_type i = this->_size; i > 0; i--)
