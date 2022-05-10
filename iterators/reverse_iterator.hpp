@@ -155,7 +155,17 @@ namespace ft
 	template <class Iterator>
 	typename reverse_iterator<Iterator>::difference_type operator-(const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs)
 	{
-		reutrn (lhs.base() - rhs.base());
+		return (lhs.base() - rhs.base());
 	}
+
+	template <class InputIterator>
+	typename ft::iterator_traits<InputIterator>::difference_type	distance(InputIterator first, InputIterator last)
+	{
+		typename ft::iterator_traits<InputIterator>::difference_type i = 0;
+		for (; first != last; ++first, i++);
+			return (i);
+	};
+
+
 }
 #endif

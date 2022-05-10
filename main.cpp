@@ -26,6 +26,7 @@ int	main(void)
     std::cout << "size after: " << a.size() << std::endl;
     std::cout << "new capacity of vector : " << a.capacity() << std::endl;
     std_it = a.begin();
+    std::cout << "value of first element : " << a.at(0) << std::endl;
     a.insert(std_it, 42);
     std::cout << "value of first element : " << a.at(0) << std::endl;
 
@@ -39,9 +40,12 @@ int	main(void)
     b.reserve(15);
     b.resize(16);
     std::cout << "new capacity of vector : " << b.capacity() << std::endl;
+    std::cout << "size before: " << b.size() << std::endl;
     b.clear();
+    std::cout << "size before: " << b.size() << std::endl;
     b.assign(12, 100);
-    std::cout << "size after: " << a.size() << std::endl;
+    std::cout << "size after: " << b.size() << std::endl;
+    std::cout << "value of first element : " << b.at(0) << std::endl;
     ft_it = b.begin();
     std::cout << "========================= DEBUG =========================" << std::endl;
     b.insert(ft_it, 42);

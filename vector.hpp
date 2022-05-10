@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/10 01:59:12 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/10 17:03:52 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,8 +229,9 @@ namespace ft
   			void assign (InputIterator first, InputIterator last)
 			{
 				// TO DO
-				(void)first;
-				(void)last;
+				this->clear();
+				// this->reserve (ft::distance(first, last));
+				this->insert (begin(), first, last);
 			}
 			void assign (size_type n, const value_type& val) // Assigns new contents to the vector, replacing its current contents, and modifying its size accordingly.
 			{
@@ -269,13 +270,11 @@ namespace ft
 				this->_allocator.construct(&this->_vector[pos], val);
 				this->_size++;
 				return (&this->_vector[pos]);
-			} // single element
+			} 
+			
 
 			void insert (iterator position, size_type n, const value_type& val)			
 			{
-				std::cout << "value of n : " << n << std::endl;
-				std::cout << "value of value type : " << val << std::endl;
-				std::cout << "DEBUG2" << std::endl;
 				if (!n)
 					throw std::invalid_argument("n");
 				difference_type pos = this->_vector - position;
@@ -298,7 +297,7 @@ namespace ft
 				}
 				this->_size += n;
 				
-			} // fill
+			} 
 			
 			template<class InputIterator>
 			void	insert(iterator position, InputIterator first, InputIterator last)
@@ -348,6 +347,7 @@ namespace ft
 		size_type		_capacity;
 	};
 	/*											operators overload												*/
+	
 template< class T, class Alloc >
 bool operator==( const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs )
 {
