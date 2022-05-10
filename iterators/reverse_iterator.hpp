@@ -163,7 +163,7 @@ namespace ft
 	{
 		typename ft::iterator_traits<InputIterator>::difference_type i = 0;
 		for (; first != last; ++first, i++);
-			return (i);
+		return (i);
 	};
 
 

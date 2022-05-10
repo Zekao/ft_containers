@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/10 17:03:52 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/10 22:51:26 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "iterators/iterators_traits.hpp"
 # include "iterators/random_access_iterator.hpp"
 # include "iterators/reverse_iterator.hpp"
+# include "utils/type_iterators_traits.hpp"
 namespace ft
 {
 	
@@ -226,11 +227,12 @@ namespace ft
 			/* ===================================================================================================== */
 
 			template <class InputIterator>
-  			void assign (InputIterator first, InputIterator last)
+  			void assign (typename ft::enable_if<!(ft::is_integral<InputIterator>::value), InputIterator>::type first, InputIterator last)
 			{
 				// TO DO
+				std::cout << "NO" << std::endl;
 				this->clear();
-				// this->reserve (ft::distance(first, last));
+				this->reserve (ft::distance(first, last));
 				this->insert (begin(), first, last);
 			}
 			void assign (size_type n, const value_type& val) // Assigns new contents to the vector, replacing its current contents, and modifying its size accordingly.
@@ -277,7 +279,7 @@ namespace ft
 			{
 				if (!n)
 					throw std::invalid_argument("n");
-				difference_type pos = this->_vector - position;
+				difference_type pos = position - this->_vector ;
 
 				if (n + this->_size > this->_capacity)
 				{
@@ -291,7 +293,7 @@ namespace ft
 					this->_allocator.construct(&this->_vector[i + n - 1], this->_vector[i - 1]);
 					this->_allocator.destroy(&this->_vector[i - 1]);
 				}
-				for (difference_type i = 0; i < n; i++)
+				for (size_type i = 0; i < n; i++)
 				{
 					this->_allocator.construct(&this->_vector[pos + i], val);
 				}
