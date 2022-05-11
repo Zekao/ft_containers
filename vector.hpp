@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/11 02:15:42 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/11 16:19:23 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,22 @@ namespace ft
 			}
 			~vector()
 			{
+				for (size_type i = 0; i < this->_size; i++)
+					this->_allocator.destroy(&this->_vector[i]);
+				if (this->_vector != NULL)
+					this->_allocator.deallocate(this->_vector, this->_capacity);
+
 			};
 			
+			vector& operator=(const vector& x)
+			{
+				if (x == *this)
+					return *this;
+				this->clear();
+				this->insert(begin(), x.begin(), x.end());
+				return (*this);
+			};
+
 			/* ===================================================================================================== */
 			/*													Iterators											 */
 			/* ===================================================================================================== */
