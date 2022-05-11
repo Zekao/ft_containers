@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/11 01:50:42 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/11 02:15:42 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -407,9 +407,14 @@ namespace ft
 template< class T, class Alloc >
 bool operator==( const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs )
 {
-	if (lhs.size() == rhs.size())
+	if (lhs.size() != rhs.size())
 		return (false);
-	return(std::equal(lhs.begin(), rhs.begin()));
+	for (size_t i = 0; i < lhs.size(); i++)
+	{
+		if (lhs[i] != rhs[i])
+			return (false);
+	}
+		return (true);
 }
 
 template< class T, class Alloc >
@@ -439,9 +444,7 @@ bool operator>( const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs )
 template< class T, class Alloc >
 bool operator>=( const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs )
 {
-	if (lhs > rhs)
-		return (true);
-	return (false);
+	return (!(lhs < rhs));
 }
 
 template <class T, class Alloc>
