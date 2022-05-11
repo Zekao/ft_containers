@@ -39,6 +39,9 @@ namespace ft
 			/* ===================================================================================================== */
 				
 			/*												operators												*/
+			reference operator*(void) const {return *this->_p;};
+			pointer operator->(void) const {return &(this->operator*());};
+		
 			random_access_iterator &operator=(const random_access_iterator &rhs)
 			{
 				if (*this == rhs)
@@ -130,6 +133,11 @@ namespace ft
 			{
 				return (this->_p[n]);
 			};
+			operator random_access_iterator<const value_type>() const 
+			{
+				return (random_access_iterator<const value_type>(_p));
+			};
+
 		private:
 			pointer	_p;
 	};

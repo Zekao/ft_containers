@@ -38,10 +38,10 @@
             get_allocator
     -   VECTOR
         - Iterateurs:
-            - begin -> TODO
-            - end -> TODO
-            - rbegin -> TODO
-            - rend -> TODO
+            - begin -> OK
+            - end -> OK
+            - rbegin -> OK
+            - rend -> OK
         - Capacity:
             - size -> OK
             - max_size -> OK
@@ -55,20 +55,20 @@
             - front -> OK
             - back -> OK
         - Modifiers:
-            - assign
-            - push_back
+            - assign -> OK
+            - push_back -> OK ?/?/
             - pop_back -> OK
-            - insert -> OK -> OK -> TODO
+            - insert -> OK -> OK -> OK
             - erase -> OK
-            - swap
+            - swap -> OK
             - clear -> OK
         - Allocator:
             - get_allocator -> OK
         - Non-member function overloads:
-            - relational operators 
-            - swap
+            - relational operators -> OK
+            - swap -> OK
     ITERATORS
         - random_access_iterator -> OK
         - iterators_traits -> OK
         - iterator -> OK
-        - reverse_iterator -> TODO
+        - reverse_iterator -> OK
