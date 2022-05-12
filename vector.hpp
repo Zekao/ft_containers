@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/12 03:05:42 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/12 20:58:27 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ namespace ft
 			
 			explicit vector (const allocator_type& alloc = allocator_type()) : _size(0), _capacity(0)
 			{
+				this->_vector = NULL;
 				this->_allocator = alloc;
 			} // default constructor 
 			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())

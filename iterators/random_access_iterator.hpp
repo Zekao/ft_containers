@@ -240,7 +240,7 @@ namespace ft
 		return (lhs.base() + rhs.base());
 	};
 	template <typename Iterator>
-	ft::random_access_iterator<Iterator> operator+(typename random_access_iterator<Iterator>::difference_type n, const ft::random_access_iterator<Iterator>& lhs) 
+	ft::random_access_iterator<Iterator> operator+(typename random_access_iterator<Iterator>::difference_type n, ft::random_access_iterator<Iterator>& lhs) 
 	{
 		return (lhs + n);
 	};
