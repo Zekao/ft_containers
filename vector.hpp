@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/11 16:36:56 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/12 03:05:42 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ namespace ft
 				this->_allocator = alloc;
 				this->_size = n;
 				this->_capacity = n;
+				this->_vector = NULL;
 				if (this->_capacity)
 					this->_vector = this->_allocator.allocate(n);
 				for (size_type i = 0; i < n; i++) this->_allocator.construct(&this->_vector[i], val);
@@ -69,7 +70,15 @@ namespace ft
 			}
 			vector (const vector& x)
 			{
-				*this = x;
+				this->_allocator = x._allocator;
+				this->_capacity = x._capacity;
+				this->_size = x._size;
+				this->_vector = x._vector;
+				if (this->_capacity)
+					this->_vector = this->_allocator.allocate(this->_capacity);
+				for (size_type i = 0; i < this->_size; i++)
+					this->_allocator.construct(&this->_vector[i], x._vector[i]);
+
 			}
 			~vector()
 			{
@@ -372,24 +381,28 @@ namespace ft
 
 			iterator erase(iterator position)
 			{
-				difference_type pos = this->_vector - position;
-				if (pos > 0)
-					this->_allocator.destroy(&this->_vector[pos - 1]);
-				return (&this->_vector[pos]);
+				for (size_type i = position - this->_vector; i < this->_size - 1; i++) 
+				{
+					this->_allocator.destroy(&this->_vector[i]);
+					this->_allocator.construct(&this->_vector[i], this->_vector[i + 1]);
+				}
+				this->_allocator.destroy(&this->_vector[this->_size - 1]);
+				this->_size--;
+				return (position);
 			}
 
 			iterator erase(iterator first, iterator last)
 			{
 				size_type	pos = last - first;
-				if (pos > 0)
+				for (size_type i = first - this->_vector; i < this->_size; i++)
 				{
-					for(difference_type i = this->_size; i > 0; i--)
-					{
-						this->_allocator.destroy(&this->_vector[i]);				
-						this->_allocator.construct(&this->_vector[i], this->_vector[i + 1]);
-					}	
+					this->_allocator.destroy(&this->_vector[i]);
+					this->_allocator.construct(&this->_vector[i], this->_vector[i + pos]);
 				}
-				return (&this->_vector[pos]);
+				for (size_type i = this->_size - pos; i < this->_size; i++)
+					this->_allocator.destroy(&this->_vector[i]);
+				this->_size -= pos;
+				return  (first);
 			}
 
 			void swap (vector& x) {
