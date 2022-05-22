@@ -12,8 +12,8 @@
 
 #include <iostream>
 
-# define BLACK 1
-# define RED 2
+# define BLACK 0
+# define RED 1
 
 struct Node
 {
@@ -81,7 +81,7 @@ class RedBlackTree
 			/* Steps:
 			1 - Init
 			2 - If y has a left subtree, assign x as the parent of the left subtree of y
-			3 - If the parent of x is NULL, make y as the root of the tree.
+			3 - If the parent of x is NULeL, make y as the root of the tree.
 			4 - Else if x is the left child of p, make y as the left child of p.
 			5 - Else assign y as the right child of p
 			6 - Make y as the parent of x.
@@ -138,7 +138,7 @@ class RedBlackTree
 			{
 				if (k->parent == k->parent->parent->rightChild)
 				{
-					u = k->parent->leftChild;
+					u = k->parent->parent->leftChild;
 					if (u->color == RED)
 					{
 						u->color = BLACK;
@@ -153,10 +153,10 @@ class RedBlackTree
 							k = k->parent;
 							rightRotate(k);
 						}
-					}
 					k->parent->color = BLACK;
 					k->parent->parent->color = RED;
 					leftRotate(k->parent->parent);
+					}
 				}
 				else
 				{
@@ -177,16 +177,18 @@ class RedBlackTree
 						}
 					}
 					k->parent->color = BLACK;
-					k->parent->color = RED;
+					k->parent->parent->color = RED;
 					rightRotate(k->parent->parent);
 				}
+				if (k == _root)
+					break;
 			}
-			
+			_root->color = BLACK;
 		}
 
 		void	Transplant(NodePtr u, NodePtr v)
 		{
-			if (u->parent == _null)
+			if (u->parent == NULL)
 				_root = v;
 			else if (u == u->parent->leftChild)
 				u->parent->leftChild = v;
@@ -388,22 +390,15 @@ void printHelper(NodePtr root, std::string indent, bool last) {
 
 			if (node->parent->parent == NULL)
 				return ;
-/*			if (y == NULL)
-			{
-				node->color = RED;
-				return ;
-			}
-			if (node->parent->parent == NULL)
-				return ;
-*/			insertFix(node);
+			insertFix(node);
 		}
-		void printTree()
+	void printTree()
+	{
+		if (_root)
 		{
-			if (_root)
-			{
-				printHelper(this->_root, "", true);
-			}
+			printHelper(this->_root, "", true);
 		}
+	}
 };
 
 int main()
@@ -413,7 +408,7 @@ int main()
   bst.insert(40);
   bst.insert(65);
   std::cout << "OK" << std::endl;
-//   bst.insert(60);
+  bst.insert(60);
 //   bst.insert(75);
 //   bst.insert(57);
 
