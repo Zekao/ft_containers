@@ -37,7 +37,7 @@ class RedBlackTree
 		/*==========================================*/
 		void	initNode(NodePtr node, NodePtr Parent)
 		{
-			node->data = NULL;
+			node->data = 0;
 			node->parent = Parent;
 			node->leftChild = NULL;
 			node->rightChild = NULL;
@@ -336,6 +336,23 @@ class RedBlackTree
 			x->color = BLACK;
 		}
 
+void printHelper(NodePtr root, std::string indent, bool last) {
+	if (root != _null) {
+	  std::cout << indent;
+	  if (last) {
+		std::cout << "R----";
+		indent += "   ";
+	  } else {
+		std::cout << "L----";
+		indent += "|  ";
+	  }
+
+	  std::string sColor = root->color ? "RED" : "BLACK";
+	  std::cout << root->data << "(" << sColor << ")" << std::endl;
+	  printHelper(root->leftChild, indent, false);
+	  printHelper(root->rightChild, indent, true);
+	}
+  }
 		void	insert(int	key)
 		{
 			NodePtr node = new Node;
@@ -343,6 +360,7 @@ class RedBlackTree
 			node->data = key;
 			node->rightChild = _null;
 			node->leftChild = _null;
+			node->color = RED;
 
 			NodePtr x = this->_root;
 			NodePtr y = NULL;
@@ -357,15 +375,51 @@ class RedBlackTree
 	
 			node->parent = y;
 			if (y == NULL)
+				_root = node;
+			else if (node->data < y->data)
+				y->leftChild = node;
+			else
+				y->rightChild = node;
+			if (node->parent == NULL)
+			{
+				node->color = BLACK;
+				return ;
+			}
+
+			if (node->parent->parent == NULL)
+				return ;
+/*			if (y == NULL)
 			{
 				node->color = RED;
 				return ;
 			}
 			if (node->parent->parent == NULL)
 				return ;
-			insertFix(node);
+*/			insertFix(node);
 		}
-	public:
-		RedBlackTree(/* args */);
-		~RedBlackTree();
+		void printTree()
+		{
+			if (_root)
+			{
+				printHelper(this->_root, "", true);
+			}
+		}
 };
+
+int main()
+{
+  RedBlackTree bst;
+  bst.insert(55);
+  bst.insert(40);
+  bst.insert(65);
+  std::cout << "OK" << std::endl;
+//   bst.insert(60);
+//   bst.insert(75);
+//   bst.insert(57);
+
+  bst.printTree();
+  std::cout << std::endl
+	 << "After deleting" << std::endl;
+  bst.deleteNode(40);
+  bst.printTree();
+}
