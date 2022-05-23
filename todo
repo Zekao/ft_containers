@@ -36,6 +36,8 @@
             - equal_range
         - Allocator:
             get_allocator
+        -   RedBlackTree    -> OK
+                -  faire les fonctions pour trouver min / max etc dans le rbt -> TODO
     -   VECTOR
         - Iterateurs:
             - begin -> OK
