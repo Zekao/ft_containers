@@ -175,10 +175,10 @@ class RedBlackTree
 							k = k->parent;
 							leftRotate(k);
 						}
-					}
 					k->parent->color = BLACK;
 					k->parent->parent->color = RED;
 					rightRotate(k->parent->parent);
+					}
 				}
 				if (k == _root)
 					break;
@@ -407,10 +407,9 @@ int main()
   bst.insert(55);
   bst.insert(40);
   bst.insert(65);
-  std::cout << "OK" << std::endl;
   bst.insert(60);
-//   bst.insert(75);
-//   bst.insert(57);
+  bst.insert(75);
+  bst.insert(57);
 
   bst.printTree();
   std::cout << std::endl
