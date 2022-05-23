@@ -87,7 +87,7 @@ class RedBlackTree
 			6 - Make y as the parent of x.
 			*/
 			NodePtr y = x->rightChild;
-			x->rightChild = y->rightChild;
+			x->rightChild = y->leftChild;
 			if (y->leftChild != _null)
 			{
 				y->leftChild->parent = x;
@@ -110,7 +110,7 @@ class RedBlackTree
 		void	rightRotate(NodePtr x)
 		{
 			NodePtr y = x->leftChild;
-			x->leftChild = y->leftChild;
+			x->leftChild = y->rightChild;
 			if (y->rightChild != _null)
 			{
 				y->rightChild->parent = x;
@@ -401,19 +401,19 @@ void printHelper(NodePtr root, std::string indent, bool last) {
 	}
 };
 
-int main()
+#include <stdio.h>
+
+int main(int argc, char **argv)
 {
   RedBlackTree bst;
-  bst.insert(55);
-  bst.insert(40);
-  bst.insert(65);
-  bst.insert(60);
-  bst.insert(75);
-  bst.insert(57);
-
+	while (argc > 1)
+	{
+		bst.insert(atoi(argv[argc - 1]));
+		argc--;
+	}
   bst.printTree();
   std::cout << std::endl
 	 << "After deleting" << std::endl;
-  bst.deleteNode(40);
+  bst.deleteNode(42);
   bst.printTree();
 }
