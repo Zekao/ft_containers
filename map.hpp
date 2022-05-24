@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:51:17 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/23 21:16:01 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/23 23:38:35 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,18 @@ namespace ft
 	class map
 	{
 		public:
-		typedef				T									value_type;
-		typedef				Allocator							allocator_type;
-		typedef typename	allocator_type::reference			allocator_type;
-		typedef typename 	allocator_type::const_reference		const_reference;
-		typedef typename	allocator_type::pointer				pointer;
-		typedef typename	allocator_type::const_pointer		const_pointer;
-		typedef	typename	ft::random_access_iterator			iterator;
-		typedef	typename	ft::random_access_iterator			const_iterator;
-		typedef	typename	ft::
+		typedef				T											value_type;
+		typedef				Allocator									allocator_type;
+		typedef typename	allocator_type::reference					allocator_type;
+		typedef typename 	allocator_type::const_reference				const_reference;
+		typedef typename	allocator_type::pointer						pointer;
+		typedef typename	allocator_type::const_pointer				const_pointer;
+		typedef	typename	ft::random_access_iterator					iterator;
+		typedef	typename	ft::random_access_iterator					const_iterator;
+		typedef	typename	ft::reverse_iterator<iterator>				reverse_iterator;
+		typedef	typename	ft::reverse_iterator<const iterator>		const_reverse_iterator;
+		typedef	typename	allocator_type::difference_type				difference_type;
+		typedef	typename	allocator_type::size_type					size_type;
 		
 	};
 }
