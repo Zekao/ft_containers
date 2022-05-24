@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:51:17 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/24 22:15:37 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/24 22:43:21 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@
 # include "iterators/bidirectionnal_iterator.hpp"
 # include "iterators/reverse_iterator.hpp"
 # include "utils/type_traits.hpp"
+# include "utils/pair.hpp"
 
 namespace ft
 {
-	template <class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T> > >
+	template <class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<ft::pair<const Key, T> > >
 	class map
 	{
 		public:
