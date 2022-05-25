@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/12 20:58:27 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/25 19:54:54 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "iterators/random_access_iterator.hpp"
 # include "iterators/reverse_iterator.hpp"
 # include "utils/type_traits.hpp"
+# include "utils/lexicographical_compare.hpp"
 namespace ft
 {
 	
@@ -454,7 +455,7 @@ bool operator!=( const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs 
 template< class T, class Alloc >
 bool operator<( const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs )
 {
-	return (std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+	return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
 }
 
 template< class T, class Alloc >
