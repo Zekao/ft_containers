@@ -74,8 +74,9 @@
         - iterators_traits -> OK
         - iterator -> OK
         - reverse_iterator -> OK
+        - bidirectionnal_iterator -> OK
     - std::pair -> OK
     - std::make_pair -> OK
     - is_integral -> OK
     - enable_if -> OK
-    - lexicographical_compare -> TODO 
+    - lexicographical_compare -> OK 
