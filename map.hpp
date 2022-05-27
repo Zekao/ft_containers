@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:51:17 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/27 18:55:39 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:38:09 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,19 @@ namespace ft
 			this->_compare = comp;
 		}
 		template <class InputIterator>
-		map (InputIterator first, InputIterator last, const key_compare & comp = key_compare())
+		map (InputIterator first, InputIterator last, const key_compare & comp = key_compare(), const allocator_type &alloc = allocator_type(), 
+		typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = 0)
 		{
+			this->_allocator = alloc;
+			this->_compare = comp;
+			this->_size = 0;
 			(void)first;
 			(void)last;
-			(void)comp;
 		}
 		map (const map & copy);
 		key_compare		key_comp(void) const {return this->_compare;};
 		/* ==================================================================================================== */
-		/*												Capacity											*/
+		/*												Capacity												*/
 		/* ==================================================================================================== */
 		bool empty(void) const
 		{
@@ -96,6 +99,70 @@ namespace ft
 		{
 			return (this->_allocator.max_size());
 		}
+		/* ==================================================================================================== */
+		/*												Element access											*/
+		/* ==================================================================================================== */
+		mapped_type	&operator[] (const key_type & key)
+		{
+			/*
+				if key is an element of the container
+					: -	the function return a refference to its mapped value
+				if key does not match any element of the container
+					: -	the function insert a new element with that key and return a reference to its mapped value
+			*/
+			return (NULL);
+		}
+		/* ==================================================================================================== */
+		/*													Iterators											*/
+		/* ==================================================================================================== */
+		/* To do in my red_black_tree :
+			-	Begin function
+			-	End function
+		^*/
+		iterator	begin(void)
+		{
+			return (NULL);
+			// return (_rbt.begin());
+		}
+		
+		const_iterator	begin(void) const
+		{
+			return (NULL);
+			// return (_rbt.begin());
+		}
+
+		iterator	end(void)
+		{
+			return (NULL);
+		// 	return (_rbt.end());
+		}
+		
+		const_iterator	end(void) const
+		{
+			return (NULL);
+		// 	return (_rbt.end());
+		}
+	
+		reverse_iterator	rbegin(void)
+		{
+			return (NULL);
+		}
+
+		const_reverse_iterator	rbegin(void) const
+		{
+			return (NULL);
+		}
+
+		reverse_iterator	rend(void)
+		{
+			return (NULL);
+		}
+		
+		const_reverse_iterator	rend(void) const
+		{
+			return (NULL);
+		}
+		
 		private:
 		Compare									_compare;
 		allocator_type							_allocator;

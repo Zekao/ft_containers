@@ -9,15 +9,19 @@
             - operateurs relationnels -> OK
 
     -   MAP
+        -   Constructors:
+            - empty container constructor -> OK
+            - range constructor -> TODO
+            - copy constructor -> TODO
         -   Iterateurs:
-            - begin
-            - end
-            - rbegin
-            - rend
+            - begin -> TODO ON MY RBT
+            - end -> TODO ON MY RBT
+            - rbegin -> TODO ON MY RBT
+            - rend -> TODO ON MY RBT
         - Capacity:
-            - empty
-            - size
-            - max_size
+            - empty -> OK
+            - size -> OK
+            - max_size -> OK
         - Element access:
             - operator[]
         - Modifiers:
@@ -29,13 +33,13 @@
             - key_comp
             - value_comp
         - Operations:
-            - find
-            - count
-            - lower_bound
-            - upper_bound
-            - equal_range
+            - find          -> TODO
+            - count         -> TODO
+            - lower_bound   -> TODO
+            - upper_bound   -> TODO
+            - equal_range   -> TODO
         - Allocator:
-            get_allocator
+            get_allocator   -> TODO
         -   RedBlackTree    -> OK
                 -  faire les fonctions pour trouver min / max etc dans le rbt -> TODO
     -   VECTOR

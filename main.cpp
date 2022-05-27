@@ -10,19 +10,43 @@
 #include "iterators/random_access_iterator.hpp"
 #include "iterators/bidirectionnal_iterator.hpp"
 #include "utils/make_pair.hpp"
+#include "utils/red_black_tree.hpp"
 
 int	main(void)
 {
-	ft::pair <int,int> foo;
-	ft::pair <int,int> bar;
+	RedBlackTree rbt;
 
-	foo = ft::make_pair (10,20);
-	bar = ft::make_pair (10.5,'A'); // ok: implicit conversion from pair<double,char>
+	rbt.insert(74);
+	rbt.insert(28);
+	rbt.insert(230);
+	rbt.insert(234);
+	rbt.insert(112);
+	rbt.insert(4);
+	rbt.insert(875);
+	rbt.insert(14234);
+	rbt.insert(2);
+	rbt.printTree();
 
-	std::cout << "foo: " << foo.first << ", " << foo.second << '\n';	
-	std::cout << "bar: " << bar.first << ", " << bar.second << '\n';
+	ft::map<std::string, std::string> test;
+	std::map<std::string, std::string> test2;
+	test.begin();
+	// std::cout << " is it empty? " << test2.empty() << std::endl;
+	// std::cout << " is it empty? " << test.empty() << std::endl;
+	// std::cout << "size of my container 	: " << test.size() << std::endl;
+	// std::cout << "max size of my container 	: " << test.max_size() << std::endl;
+	// std::cout << "size of real container : " << test2.size() << std::endl;
+	// std::cout << "max size of real container 	: " << test2.max_size() << std::endl;
+	// test.insert(42);
+// 	ft::pair <int,int> foo;
+// 	ft::pair <int,int> bar;
 
-  return 0;
+// 	foo = ft::make_pair (10,20);
+// 	bar = ft::make_pair (10.5,'A'); // ok: implicit conversion from pair<double,char>
+
+// 	std::cout << "foo: " << foo.first << ", " << foo.second << '\n';	
+// 	std::cout << "bar: " << bar.first << ", " << bar.second << '\n';
+
+//   return 0;
 	// ft::pair<std::string, std::string>("salut", "test");
 
 	// ft::map <std::string, std::string>::iterator yo;
