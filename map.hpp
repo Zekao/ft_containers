@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:51:17 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/27 21:38:09 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:44:04 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ namespace ft
 				if key does not match any element of the container
 					: -	the function insert a new element with that key and return a reference to its mapped value
 			*/
+			(void)key;
 			return (NULL);
 		}
 		/* ==================================================================================================== */
