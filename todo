@@ -83,3 +83,4 @@
             - lexicographical_compare -> OK 
             - binary_function -> OK
             - less -> OK
+            - value_compare -> OK

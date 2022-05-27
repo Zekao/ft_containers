@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:51:17 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/27 18:16:19 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/27 18:55:39 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "utils/pair.hpp"
 # include "utils/less.hpp"
 # include "utils/red_black_tree.hpp"
-
+# include "utils/binary_function.hpp"
 namespace ft
 {
 	template <class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<ft::pair<const Key, T> > >
@@ -35,6 +35,17 @@ namespace ft
 		typedef				T														mapped_type;
 		typedef				ft::pair<const key_type, mapped_type>					value_type;
 		typedef				Compare													key_compare;
+		class value_compare : public ft::binary_function<value_type, value_type, bool>
+		{
+			friend class ft::map<Key, T, Compare, Allocator>;
+			protected:
+				Compare comp;
+				value_compare(Compare c) : comp(c) { }
+				bool operator()( const value_type& lhs, const value_type& rhs ) const
+				{
+					return (comp(lhs, rhs));
+				}
+		};
 		typedef				Allocator												allocator_type;
 		typedef typename	allocator_type::reference								reference;
 		typedef typename 	allocator_type::const_reference							const_reference;
