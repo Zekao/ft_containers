@@ -75,8 +75,11 @@
         - iterator -> OK
         - reverse_iterator -> OK
         - bidirectionnal_iterator -> OK
-    - std::pair -> OK
-    - std::make_pair -> OK
-    - is_integral -> OK
-    - enable_if -> OK
-    - lexicographical_compare -> OK 
+        - Utils:
+            - std::pair -> OK
+            - std::make_pair -> OK
+            - is_integral -> OK
+            - enable_if -> OK
+            - lexicographical_compare -> OK 
+            - binary_function -> OK
+            - less -> OK
