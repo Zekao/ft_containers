@@ -134,104 +134,109 @@ namespace ft
 	bool operator<(const ft::bidirectional_iterator<Iterator>& lhs, const ft::bidirectional_iterator<Iterator>& rhs)
 	{
 		return (lhs < rhs);
-	};
+	}
 	
 	template <class Iterator1, class Iterator2>
 	bool operator<(const ft::bidirectional_iterator<Iterator1> lhs, const ft::bidirectional_iterator<Iterator2> rhs) 
 	{
-		return (lhs.base() < rhs.base());};
+		return (lhs.base() < rhs.base());
+	}
 	
 	template <class Iterator>
 	bool operator>(const ft::bidirectional_iterator<Iterator>& lhs, const ft::bidirectional_iterator<Iterator>& rhs) 
 	{
 		return (lhs > rhs);
-	};
+	}
 
 	template <class Iterator1, class Iterator2>
 	bool operator>(const ft::bidirectional_iterator<Iterator1> lhs, const ft::bidirectional_iterator<Iterator2> rhs) 
 	{
 		return (lhs.base() > rhs.base());
-	};
+	}
 
 	template <class Iterator>
 	bool operator>=(const ft::bidirectional_iterator<Iterator>& lhs, const ft::bidirectional_iterator<Iterator>& rhs) 
 	{
 		return (lhs >= rhs);
-	};
+	}
 
 	template <class Iterator1, class Iterator2>
 	bool operator>=(const ft::bidirectional_iterator<Iterator1> lhs, const ft::bidirectional_iterator<Iterator2> rhs) 
 	{
 		return (lhs.base() >= rhs.base());
-	};
+	}
 
 	template <class Iterator>
 	bool operator<=(const ft::bidirectional_iterator<Iterator>& lhs, const ft::bidirectional_iterator<Iterator>& rhs) 
 	{
 		return (lhs <= rhs);
-	};
+	}
 
 	template <class Iterator1, class Iterator2>
 	bool operator<=(const ft::bidirectional_iterator<Iterator1> lhs, const ft::bidirectional_iterator<Iterator2> rhs) 
 	{
 		return (lhs.base() <= rhs.base());
-	};
+	}
 
 	template <class Iterator>
 	bool operator==(const ft::bidirectional_iterator<Iterator>& lhs, const ft::bidirectional_iterator<Iterator>& rhs) 
 	{
 		return (lhs == rhs);
-	};
+	}
 
 	template <class Iterator1, class Iterator2>
 	bool operator==(const ft::bidirectional_iterator<Iterator1> lhs, const ft::bidirectional_iterator<Iterator2> rhs) 
 	{
 		return (lhs.base() == rhs.base());
-	};
+	}
 
 	template <class Iterator>
 	bool operator!=(const ft::bidirectional_iterator<Iterator>& lhs, const ft::bidirectional_iterator<Iterator>& rhs) 
 	{
 		return (lhs != rhs);
-	};
+	}
 
 	template <class Iterator1, class Iterator2>
 	bool operator!=(const ft::bidirectional_iterator<Iterator1> lhs, const ft::bidirectional_iterator<Iterator2> rhs) 
 	{
 		return (lhs.base() != rhs.base());
-	};
+	}
 
 	template <class Iterator>
 	typename ft::bidirectional_iterator<Iterator>::difference_type operator-(const ft::bidirectional_iterator<Iterator>& lhs, const ft::bidirectional_iterator<Iterator>& rhs) 
 	{
 		return (lhs - rhs);
-	};
+	}
+
 	template <class Iterator1, class Iterator2>
 	typename ft::bidirectional_iterator<Iterator1>::difference_type operator-(const ft::bidirectional_iterator<Iterator1> lhs, const ft::bidirectional_iterator<Iterator2> rhs) 
 	{
 		return (lhs.base() - rhs.base());
-	};
+	}
+
 	template <typename Iterator>
 	ft::bidirectional_iterator<Iterator> operator-(typename bidirectional_iterator<Iterator>::difference_type n, const ft::bidirectional_iterator<Iterator>& lhs) 
 	{
 		return (lhs - n);
-	};
+	}
 
 	template <class Iterator>
 	typename ft::bidirectional_iterator<Iterator>::difference_type operator+(const ft::bidirectional_iterator<Iterator>& lhs, const ft::bidirectional_iterator<Iterator>& rhs) 
 	{
 		return (lhs + rhs);
-	};
+	}
+
 	template <class Iterator1, class Iterator2>
 	typename ft::bidirectional_iterator<Iterator1>::difference_type operator+(const ft::bidirectional_iterator<Iterator1> lhs, const ft::bidirectional_iterator<Iterator2> rhs) 
 	{
 		return (lhs.base() + rhs.base());
-	};
+	}
+
 	template <typename Iterator>
 	ft::bidirectional_iterator<Iterator> operator+(typename bidirectional_iterator<Iterator>::difference_type n, ft::bidirectional_iterator<Iterator>& lhs) 
 	{
 		return (lhs + n);
-	};
+	}
 
 }
 

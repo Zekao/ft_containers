@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 23:49:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/11 01:30:31 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/28 02:01:09 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,22 @@ namespace ft
 	template <> struct is_integral_type<signed char> :					true_type {};
 	template <> struct is_integral_type<short int> :					true_type {};
 	template <> struct is_integral_type<int> :							true_type {};
-	template <> struct is_integral_type<long long int> :				true_type {};
+	template <> struct is_integral_type<long int> :						true_type {};
 	template <> struct is_integral_type<unsigned char> :				true_type {};
 	template <> struct is_integral_type<unsigned short int> :			true_type {};
 	template <> struct is_integral_type<unsigned int> :					true_type {};
 	template <> struct is_integral_type<unsigned long int> :			true_type {};
-	template <> struct is_integral_type<unsigned long long int> :		true_type {};
 	template <> struct is_integral_type<const bool> :					true_type {};
 	template <> struct is_integral_type<const char> :					true_type {};
 	template <> struct is_integral_type<const wchar_t> :				true_type {};
 	template <> struct is_integral_type<const signed char> :			true_type {};
 	template <> struct is_integral_type<const short int> :				true_type {};
 	template <> struct is_integral_type<const int> :					true_type {};
-	template <> struct is_integral_type<const long long int> :			true_type {};
+	template <> struct is_integral_type<const long int> :			true_type {};
 	template <> struct is_integral_type<const unsigned char> :			true_type {};
 	template <> struct is_integral_type<const unsigned short int> :		true_type {};
 	template <> struct is_integral_type<const unsigned int> :			true_type {};
 	template <> struct is_integral_type<const unsigned long int> :		true_type {};
-	template <> struct is_integral_type<const unsigned long long int> :	true_type {};
 
 	template <class T> struct is_integral : is_integral_type<T> {};
 	template<typename T>
@@ -79,7 +77,7 @@ namespace ft
 		T c(a);
 		a = b;
 		b = c;
-	};
+	}
 }
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:06:19 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/11 01:36:20 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/28 03:51:35 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,18 @@ namespace ft
 			typedef	typename	Container::value_type	value_type;
 			
 		/*						Constructors/Destructor					*/
-		explicit stack (const container_type& container = container_type()) : _container(container){}
+		explicit stack (const container_type& container = container_type()) : _container(container)
+		{
+			
+		}
 		stack(const stack & other)
 		{
 			_container = other._container;
 		}
-		~stack() {}
+		~stack() 
+		{
+			
+		}
 		/*						Member functions					*/
 		bool	empty(void) const
 			{

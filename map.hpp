@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:51:17 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/27 21:44:04 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/28 04:05:41 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,18 @@ namespace ft
 			(void)first;
 			(void)last;
 		}
-		map (const map & copy);
+		map (const map & copy)
+		{
+			(void)copy;
+		};
+		map	&operator= (map &_map)
+		{
+			std::cout<< &this->_rbt << std::endl;
+			this->_rbt = _map._rbt;
+			std::cout<< &_map._rbt << std::endl;
+			std::cout<< &this->_rbt << std::endl;
+			return (*this);
+		}
 		key_compare		key_comp(void) const {return this->_compare;};
 		/* ==================================================================================================== */
 		/*												Capacity												*/

@@ -6,27 +6,37 @@
 #    By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/30 22:50:16 by emaugale          #+#    #+#              #
-#    Updated: 2022/05/10 22:52:34 by emaugale         ###   ########.fr        #
+#    Updated: 2022/05/28 05:47:10 by emaugale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME 		=	ft_containers
 
-SRCS 		=	main.cpp		\
+NAME_S		=	stackos
+
+SRCS 		=	main.cpp		
+TEST_STACK	=	stack_main.cpp	
 
 OBJS		=		$(SRCS:.cpp=.o)
+OBJS_STACK	=		$(TEST_STACK:.cpp=.o)
+DEPS_STACK	=		$(TEST_STACK:.cpp=.d)
 DEPS		=		$(SRCS:.cpp=.d)
 INCLUDE		= 		include
 RM		=		rm -f
-CC		=		c++
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98
+CC		=		clang++
+CFLAGS		=	-Wall -Wextra -Werror -std=c++98 
 
 %.o:				%.cpp
 	@$(CC) $(CFLAGS) -MMD -MP -c $< -o $@ -I $(INCLUDE)
 
 all:	$(NAME)
 
+test:	$(NAME_S)
+
+$(NAME_S):		$(OBJS_STACK)
+	@echo "TEST FOR STACK HAVE BEEN COMPILED"
+	$(CC) $(CFLAGS) $(OBJS_STACK) -o $(NAME_S)
 $(NAME):		$(OBJS)
 	@clear
 	@echo "\033[1;34m                                                                                                                     "
@@ -45,7 +55,7 @@ $(NAME):		$(OBJS)
 	@echo "Bonne correction!"
 
 clean:
-	@$(RM) $(OBJS) $(DEPS)
+	@$(RM) $(OBJS) $(DEPS) $(OBJS_STACK) $(DEPS_STACK)
 	@echo "\033[1;31m ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣶⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 	@echo "⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣦⣄⣀⡀⣠⣾⡇⠀⠀⠀⠀"
 	@echo "⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀"
@@ -56,8 +66,8 @@ clean:
 	@echo "\033[1;1;32m♻️  Objects have been \033[5;1;31mdeleted\033[m ♻️"
 
 fclean:
-	@$(RM) $(OBJS) $(DEPS)
-	@$(RM) $(NAME)
+	@$(RM) $(OBJS) $(DEPS) $(OBJS_STACK) $(DEPS_STACK)
+	@$(RM) $(NAME) $(NAME_S)
 	@echo -n "\033[0;31m⠀"
 	@echo "UNINSTALLING LEAGUE OF LEGENDS"
 	@echo "[##############]"
@@ -71,5 +81,5 @@ wait:
 
 re:		fclean all
 
--include $(DEPS)
-.PHONY: all clean fclean re
+-include $(DEPS) $(DEPS_STACK)
+.PHONY: all clean fclean re test
