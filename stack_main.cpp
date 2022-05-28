@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 05:05:47 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/28 05:44:40 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/28 05:48:49 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stack>
 #include <vector>
 #include <iostream>
+
 int	main(void)
 {
 	ft::stack<int> yo;
