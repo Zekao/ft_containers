@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:51:17 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/28 04:05:41 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/29 07:48:00 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ namespace ft
 		}
 		map (const map & copy)
 		{
-			(void)copy;
-		};
+			*this = copy;
+		}
 		map	&operator= (map &_map)
 		{
 			std::cout<< &this->_rbt << std::endl;
@@ -90,7 +90,11 @@ namespace ft
 			std::cout<< &this->_rbt << std::endl;
 			return (*this);
 		}
-		key_compare		key_comp(void) const {return this->_compare;};
+		key_compare		key_comp(void) const
+		{
+			return (this->_compare);
+		}
+		
 		/* ==================================================================================================== */
 		/*												Capacity												*/
 		/* ==================================================================================================== */
@@ -108,7 +112,7 @@ namespace ft
 		
 		size_type	max_size(void) const
 		{
-			return (this->_allocator.max_size());
+			return (this->_rbt.max_size());
 		}
 		/* ==================================================================================================== */
 		/*												Element access											*/
@@ -127,59 +131,62 @@ namespace ft
 		/* ==================================================================================================== */
 		/*													Iterators											*/
 		/* ==================================================================================================== */
-		/* To do in my red_black_tree :
-			-	Begin function
-			-	End function
-		^*/
 		iterator	begin(void)
 		{
-			return (NULL);
-			// return (_rbt.begin());
+			return (this->_rbt.begin());
 		}
 		
 		const_iterator	begin(void) const
 		{
-			return (NULL);
-			// return (_rbt.begin());
+			return (this->_rbt.begin());
 		}
 
 		iterator	end(void)
 		{
-			return (NULL);
-		// 	return (_rbt.end());
+			return (this->_rbt.end());
 		}
 		
 		const_iterator	end(void) const
 		{
-			return (NULL);
-		// 	return (_rbt.end());
+			return (this->_rbt.end());
 		}
 	
 		reverse_iterator	rbegin(void)
 		{
-			return (NULL);
+			return (reverse_iterator(this->_rbt.end()));
 		}
 
 		const_reverse_iterator	rbegin(void) const
 		{
-			return (NULL);
+			return (const_reverse_iterator(this->_rbt.end()));
 		}
 
 		reverse_iterator	rend(void)
 		{
-			return (NULL);
+			return (const_reverse_iterator(this->_rbt.begin()));
 		}
 		
 		const_reverse_iterator	rend(void) const
 		{
-			return (NULL);
+			return (const_reverse_iterator(this->_rbt.begin()));
+		}
+		
+		/* ==================================================================================================== */
+		/*													Modifiers											*/
+		/* ==================================================================================================== */
+		ft::pair<iterator, bool>		insert (const value_type &val)
+		{
+			ft::pair<iterator, bool> res = this->_rbt.insert(val);
+			if (res.second)
+				++this->_size;
+			return (res);
 		}
 		
 		private:
-		Compare									_compare;
-		allocator_type							_allocator;
-		size_type								_size;
-		RedBlackTree							_rbt;	
+		Compare															_compare;
+		allocator_type													_allocator;
+		size_type														_size;
+		RedBlackTree<value_type, key_compare>							_rbt;	
 	};
 }
 

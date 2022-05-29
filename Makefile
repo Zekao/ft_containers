@@ -6,7 +6,7 @@
 #    By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/30 22:50:16 by emaugale          #+#    #+#              #
-#    Updated: 2022/05/28 06:10:48 by emaugale         ###   ########.fr        #
+#    Updated: 2022/05/28 10:03:56 by emaugale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ DEPS_VECTOR	=		$(TEST_VECTOR:.cpp=.d)
 INCLUDE		= 		include
 RM			=		rm -f
 CC			=		clang++
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98 
+CFLAGS		=	-Wall -Wextra -Werror -std=c++98 -pedantic
 
 %.o:				%.cpp
 	@$(CC) $(CFLAGS) -MMD -MP -c $< -o $@ -I $(INCLUDE)
