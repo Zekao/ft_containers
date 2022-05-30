@@ -6,7 +6,7 @@
 #    By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/30 22:50:16 by emaugale          #+#    #+#              #
-#    Updated: 2022/05/30 01:04:15 by emaugale         ###   ########.fr        #
+#    Updated: 2022/05/31 00:37:12 by emaugale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,10 @@
 NAME 		=	ft_containers
 NAME_S		=	stack_test
 NAME_V		=	vector_test
+NAME_M		=	map_test
 
-SRCS 		=	main.cpp		
+SRCS 		=	main.cpp
+TEST_MAP	=	map_main.cpp		
 TEST_STACK	=	stack_main.cpp	
 TEST_VECTOR	=	vector_main.cpp	
 
@@ -25,11 +27,13 @@ OBJS_STACK	=		$(TEST_STACK:.cpp=.o)
 DEPS_STACK	=		$(TEST_STACK:.cpp=.d)
 OBJS_VECTOR	=		$(TEST_VECTOR:.cpp=.o)
 DEPS_VECTOR	=		$(TEST_VECTOR:.cpp=.d)
+OBJS_MAP	=		$(TEST_MAP:.cpp=.o)
+DEPS_MAP	=		$(TEST_MAP:.cpp=.d)
 
 INCLUDE		= 		include
 RM			=		rm -f
 CC			=		clang++
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98
+CFLAGS		=	-Wall -Wextra -Werror -std=c++98 -pedantic
 
 %.o:				%.cpp
 	@$(CC) $(CFLAGS) -MMD -MP -c $< -o $@ -I $(INCLUDE)
@@ -40,12 +44,17 @@ stack:	$(NAME_S)
 
 vector: $(NAME_V)
 
+map:	$(NAME_M)
+
 $(NAME_S):		$(OBJS_STACK)
 	@echo "TEST FOR STACK HAVE BEEN COMPILED"
 	$(CC) $(CFLAGS) $(OBJS_STACK) -o $(NAME_S)
 $(NAME_V):		$(OBJS_VECTOR)
 	@echo "TEST FOR STACK HAVE BEEN COMPILED"
 	$(CC) $(CFLAGS) $(OBJS_VECTOR) -o $(NAME_V)
+$(NAME_M):		$(OBJS_MAP)
+	@echo "TEST FOR MAP HAVE BEEN COMPILED"
+	$(CC) $(CFLAGS) $(OBJS_MAP) -o $(NAME_M)
 $(NAME):		$(OBJS)
 	@clear
 	@echo "\033[1;34m                                                                                                                     "
@@ -64,7 +73,7 @@ $(NAME):		$(OBJS)
 	@echo "Bonne correction!"
 
 clean:
-	@$(RM) $(OBJS) $(DEPS) $(OBJS_STACK) $(DEPS_STACK) $(OBJS_VECTOR) $(DEPS_VECTOR)
+	@$(RM) $(OBJS) $(DEPS) $(OBJS_STACK) $(DEPS_STACK) $(OBJS_VECTOR) $(DEPS_VECTOR) $(OBJS_MAP) $(DEPS_MAP)
 	@echo "\033[1;31m ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣶⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 	@echo "⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣦⣄⣀⡀⣠⣾⡇⠀⠀⠀⠀"
 	@echo "⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀"
@@ -75,8 +84,8 @@ clean:
 	@echo "\033[1;1;32m♻️  Objects have been \033[5;1;31mdeleted\033[m ♻️"
 
 fclean:
-	@$(RM) $(OBJS) $(DEPS) $(OBJS_STACK) $(DEPS_STACK) $(OBJS_VECTOR) $(DEPS_VECTOR)
-	@$(RM) $(NAME) $(NAME_S) $(NAME_V)
+	@$(RM) $(OBJS) $(DEPS) $(OBJS_STACK) $(DEPS_STACK) $(OBJS_VECTOR) $(DEPS_VECTOR) $(OBJS_MAP) $(DEPS_MAP)
+	@$(RM) $(NAME) $(NAME_S) $(NAME_V) $(NAME_M)
 	@echo -n "\033[0;31m⠀"
 	@echo "UNINSTALLING LEAGUE OF LEGENDS"
 	@echo "[##############]"
@@ -90,5 +99,5 @@ wait:
 
 re:		fclean all
 
--include $(DEPS) $(DEPS_STACK) $(DEPS_VECTOR)
+-include $(DEPS) $(DEPS_STACK) $(DEPS_VECTOR) $(DEPS_MAP)
 .PHONY: all clean fclean re stack vector

@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 23:06:19 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/28 03:51:35 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/31 00:33:46 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ namespace ft
 			typedef	typename	Container::value_type	value_type;
 			
 		/*						Constructors/Destructor					*/
-		explicit stack (const container_type& container = container_type()) : _container(container)
+		explicit stack (const container_type& container = container_type()) : c(container)
 		{
 			
 		}
 		stack(const stack & other)
 		{
-			_container = other._container;
+			c = other.c;
 		}
 		~stack() 
 		{
@@ -44,32 +44,32 @@ namespace ft
 		/*						Member functions					*/
 		bool	empty(void) const
 			{
-				if (_container.size() != 0)
+				if (c.size() != 0)
 					return (false);
 				return (true);
 			}
 			 // return true if stack is empty
 			size_type	size(void) const
 			{
-				return (_container.size());
+				return (c.size());
 			}
 			 // return the number of elements in the stack
 			value_type &top(void)
 			{
-				return (_container.back());	
+				return (c.back());	
 			}
 			 // return a reference to the data at the first element of the stack
 			const value_type &top(void) const
 			{
-				return (_container.back());
+				return (c.back());
 			} // return a const reference to the data at the first element of the stack
 			void	push(const value_type & val)
 			{
-				_container.push_back(val);
+				c.push_back(val);
 			} // add a value to the stack
 			void	pop()
 			{
-				_container.pop_back();
+				c.pop_back();
 			}
 		/*						friend overloads (access to overloads of the given container)					*/
 		template <class Tf, class Containerf>
@@ -86,7 +86,7 @@ namespace ft
 		friend bool operator>=(const stack<Tf, Containerf> &lhs, const stack<Tf, Containerf> &rhs);
 
 		protected:
-			container_type		_container;
+			container_type		c;
 			
 	};
 	
@@ -94,37 +94,37 @@ namespace ft
 	template< class T, class Container >
 	bool operator<=( const ft::stack<T,Container>& lhs, const ft::stack<T,Container>& rhs )
 	{
-		return (lhs._container <= rhs._container);
+		return (lhs.c <= rhs.c);
 	}
 	
 	template< class T, class Container >
 	bool operator<( const ft::stack<T,Container>& lhs, const ft::stack<T,Container>& rhs )
 	{
-		return (lhs._container < rhs._container);
+		return (lhs.c < rhs.c);
 	}
 
 	template< class T, class Container >
 	bool operator==( const ft::stack<T,Container>& lhs, const ft::stack<T,Container>& rhs )
 	{
-		return (lhs._container == rhs._container);
+		return (lhs.c == rhs.c);
 	}
 
 	template< class T, class Container >
 	bool operator>( const ft::stack<T,Container>& lhs, const ft::stack<T,Container>& rhs )
 	{
-		return (lhs._container > rhs._container);
+		return (lhs.c > rhs.c);
 	}
 
 	template< class T, class Container >
 	bool operator>=( const ft::stack<T,Container>& lhs, const ft::stack<T,Container>& rhs )
 	{
-		return (lhs._container >= rhs._container);
+		return (lhs.c >= rhs.c);
 	}
 
 	template< class T, class Container >
 	bool operator!=( const ft::stack<T,Container>& lhs, const ft::stack<T,Container>& rhs )
 	{
-		return (lhs._container != rhs._container);
+		return (lhs.c != rhs.c);
 	}
 }
 
