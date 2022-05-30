@@ -6,12 +6,13 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 05:49:05 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/30 18:24:13 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/30 20:34:59 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.hpp"
 #include <vector>
+
 int main(void)
 {
 	std::cout << "=========\t ft::vector \t=========" << std::endl;
@@ -390,4 +391,27 @@ int main(void)
     std::cout << "value of last element of vector b: " << b.at(b.size() - 1) << std::endl;
     std::cout << "value of last element of vector c : " << c.at(c.size() - 1) << std::endl;
     
+    std::cout << "===============      CLEAR    =================" << std::endl;
+    std::cout << "              CLEAR modifier check              " << std::endl;
+    std::cout << "===============      CLEAR    =================" << std::endl;
+
+    std::cout << "=========== BEFORE CLEAR ===========" << std::endl;
+
+    std::cout << "size of bool vector : " << bool_vec.size() << std::endl;
+    std::cout << "size of char vector : " << char_vec.size() << std::endl;
+    std::cout << "size of int vector : " << int_vec.size() << std::endl;
+    std::cout << "size of string vector : " << string_vec.size() << std::endl;
+
+    std::cout << std::endl;    
+    bool_vec.clear();
+    char_vec.clear();
+    int_vec.clear();
+    string_vec.clear();
+    
+    std::cout << "=========== AFTER CLEAR ===========" << std::endl;
+
+    std::cout << "size of bool vector : " << bool_vec.size() << std::endl;
+    std::cout << "size of char vector : " << char_vec.size() << std::endl;
+    std::cout << "size of int vector : " << int_vec.size() << std::endl;
+    std::cout << "size of string vector : " << string_vec.size() << std::endl;
 }
