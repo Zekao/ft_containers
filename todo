@@ -11,37 +11,36 @@
     -   MAP
         -   Constructors:
             - empty container constructor -> OK
-            - range constructor -> TODO
-            - copy constructor -> TODO
+            - range constructor -> OK
+            - copy constructor -> OK
         -   Iterateurs:
-            - begin -> TODO ON MY RBT
-            - end -> TODO ON MY RBT
-            - rbegin -> TODO ON MY RBT
-            - rend -> TODO ON MY RBT
+            - begin -> OK
+            - end -> OK
+            - rbegin -> OK
+            - rend -> OK
         - Capacity:
             - empty -> OK
             - size -> OK
             - max_size -> OK
         - Element access:
-            - operator[]
+            - operator[] -> OK
         - Modifiers:
-            - insert
-            - erase
-            - swap
-            - clear
+            - insert -> OK
+            - erase -> OK
+            - swap -> OK
+            - clear -> OK
         - Observers:
-            - key_comp
-            - value_comp
+            - key_comp -> OK 
+            - value_comp -> OK
         - Operations:
-            - find          -> TODO
-            - count         -> TODO
-            - lower_bound   -> TODO
-            - upper_bound   -> TODO
-            - equal_range   -> TODO
+            - find          -> OK
+            - count         -> OK
+            - lower_bound   -> OK
+            - upper_bound   -> OK
+            - equal_range   -> OK
         - Allocator:
-            get_allocator   -> TODO
+            get_allocator   -> OK
         -   RedBlackTree    -> OK
-                -  faire les fonctions pour trouver min / max etc dans le rbt -> TODO
     -   VECTOR
         - Iterateurs:
             - begin -> OK

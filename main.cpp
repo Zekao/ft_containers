@@ -14,22 +14,19 @@
 
 int	main(void)
 {
-	RedBlackTree rbt;
+	 ft::map<char,int> first;
 
-	rbt.insert(74);
-	rbt.insert(28);
-	rbt.insert(230);
-	rbt.insert(234);
-	rbt.insert(112);
-	rbt.insert(4);
-	rbt.insert(875);
-	rbt.insert(14234);
-	rbt.insert(2);
-	rbt.printTree();
+  first['a']=10;
+  first['b']=30;
+  first['c']=50;
+  first['d']=70;
 
-	ft::map<std::string, std::string> test;
-	std::map<std::string, std::string> test2;
-	test.begin();
+  ft::map<char,int> second (first.begin(),first.end());
+
+  ft::map<char,int> third (second);
+
+	// std::cout << "test : " << ft_it->first << std::endl;
+	// std::cout << "test : " << ft_it->second << std::endl;
 	// std::cout << " is it empty? " << test2.empty() << std::endl;
 	// std::cout << " is it empty? " << test.empty() << std::endl;
 	// std::cout << "size of my container 	: " << test.size() << std::endl;

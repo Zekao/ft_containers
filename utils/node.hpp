@@ -32,21 +32,27 @@ class	Node
 	{
 		return ;
 	}
-	Node(const value_type val, node_pointer parent = NULL, node_pointer leftChild = NULL, node_pointer rightChild = NULL)
+	Node(const value_type val, node_pointer parent = NULL, node_pointer leftChild = NULL, node_pointer rightChild = NULL) : value(val)
 	{
-		this->value = val;
 		this->parent = parent;
 		this->leftChild = leftChild;
 		this->rightChild = rightChild;
 		this->color = RED;
 	}
-	Node(const_node_reference src)
+	Node(const_node_reference src) : value(src.value), parent(src.parent), leftChild(src.leftChild), rightChild(src.rightChild), color(src.color)
 	{
-		this->value = src.value;
-		this->parent = src.parent;
-		this->leftChild = src.leftChild;
-		this->rightChild = src.rightChild;
-		this->color = src.color;
+		return ;
+	}
+
+	node_reference operator=(const_node_reference rhs) 
+	{
+		if (rhs == *this) return *this;
+		this->value = rhs.value;
+		this->parent = rhs.parent;
+		this->leftChild = rhs.leftChild;
+		this->rightChild = rhs.rightChild;
+		this->color = rhs.color;
+		return *this;
 	}
 	bool operator==(const_node_reference rhs)
 	{

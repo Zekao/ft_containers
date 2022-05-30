@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 02:06:10 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/29 07:53:22 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/30 06:18:44 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "../iterators/iterators_traits.hpp"
 #include "../iterators/random_access_iterator.hpp"
 #include "../iterators/reverse_iterator.hpp"
+#include "../iterators/rbt_iterators.hpp"
 
 namespace ft
 {
@@ -37,8 +38,8 @@ namespace ft
 			typedef Type_Alloc																type_allocator;
 			typedef typename type_allocator::size_type										size_type;
 			typedef Node_Alloc																node_allocator;
-			typedef typename ft::bidirectional_iterator<ft::pair<Node, key_compare> >		iterator;
-			typedef typename ft::bidirectional_iterator<const ft::pair<Node, key_compare> >	const_iterator;
+			typedef typename ft::MAP_iterator<Node, key_compare>							iterator;
+			typedef typename ft::MAP_const_iterator<Node, key_compare>							const_iterator;
 			typedef typename Node::node_pointer												node_pointer;
 			typedef typename Node::const_node_pointer										const_node_pointer;
 			typedef typename Node::node_reference											node_reference;
@@ -145,22 +146,22 @@ namespace ft
 				}
 				else
 				{
-					y = this->_minValue(deletedNode->right);
+					y = this->_minValue(deletedNode->rightChild);
 					y_original_color = y->color;
-					x = y->right;
+					x = y->rightChild;
 					if (x && y->parent == deletedNode)
 						x->parent = y;
 					else
 					{
-						this->_transplant(y, y->right);
-						y->right = deletedNode->rightl;
-						if (y->right)
-							y->right->parent = y;
+						this->_transplant(y, y->rightChild);
+						y->rightChild = deletedNode->rightChild;
+						if (y->rightChild)
+							y->rightChild->parent = y;
 					}
 					this->_transplant(deletedNode, y);
-					y->left = deletedNode->left;
-					if (y->left)
-						y->left->parent = y;
+					y->leftChild = deletedNode->leftChild;
+					if (y->leftChild)
+						y->leftChild->parent = y;
 					y->color = deletedNode->color;
 				}
 				this->_allocator.destroy(deletedNode);
@@ -355,7 +356,7 @@ namespace ft
 					x->parent->leftChild = y;
 				else
 					x->parent->rightChild = y;
-				y->left = x;
+				y->leftChild = x;
 				x->parent = y;
 			}
 			void	_rightRotate(node_pointer x)
@@ -375,60 +376,53 @@ namespace ft
 				x->parent = y;
 			}
 
-			void	_insertFix(node_pointer k)
+			void			_insertFix(node_pointer node)
 			{
-				node_pointer	u;
-
-				while (k->parent->color == RED)
+				while (node->parent and node->parent->color == RED)
 				{
-					if (k->parent == k->parent->parent->rightChild)
-					{
-						u = k->parent->parent->leftChild;
-						if (u->color == RED)
+					if (node->parent->parent->leftChild == node->parent)
+					{	
+						if (node->parent->parent->rightChild and node->parent->parent->rightChild->color == RED)
 						{
-							u->color = BLACK;
-							k->parent->color = BLACK;
-							k->parent->parent->color = RED;
-							k = k->parent->parent;
+							node->parent->parent->leftChild->color = node->parent->parent->rightChild->color = BLACK;
+							node->parent->parent->color = RED;
+							node = node->parent->parent;
 						}
 						else
 						{
-							if (k == k->parent->leftChild)
+							if (node == node->parent->rightChild)
 							{
-								k = k->parent;
-								_rightRotate(k);
+								node = node->parent;
+								this->_leftRotate(node);
 							}
-						k->parent->color = BLACK;
-						k->parent->parent->color = RED;
-						_leftRotate(k->parent->parent);
+						node->parent->color = BLACK;
+						node->parent->parent->color = RED;
+						this->_rightRotate(node->parent->parent);
 						}
-					}
-					else
-					{
-						u = k->parent->parent->rightChild;
-						if (u->color == RED)
-						{
-							u->color = BLACK;
-							k->parent->color = BLACK;
-							k->parent->parent->color = RED;
-							k = k->parent->parent;
 						}
 						else
 						{
-							if (k == k->parent->rightChild)
+							if (node->parent->parent->leftChild and node->parent->parent->leftChild->color == RED)
 							{
-								k = k->parent;
-								_leftRotate(k);
+								node->parent->parent->leftChild->color = node->parent->parent->rightChild->color = BLACK;
+								node->parent->parent->color = RED;
+								node = node->parent->parent;
 							}
-						k->parent->color = BLACK;
-						k->parent->parent->color = RED;
-						_rightRotate(k->parent->parent);
+						else
+						{
+							if (node == node->parent->leftChild)
+							{
+								node = node->parent;
+								this->_rightRotate(node);
+							}
+						node->parent->color = BLACK;
+						node->parent->parent->color = RED;
+						this->_leftRotate(node->parent->parent);
 						}
 					}
-					if (k == _root)
-						break;
 				}
-				_root->color = BLACK;
+				this->_root->color = BLACK;
+				return;
 			}
 
 			void	_transplant(node_pointer u, node_pointer v)
@@ -439,7 +433,8 @@ namespace ft
 					u->parent->leftChild = v;
 				else
 					u->parent->rightChild = v;
-				v->parent = u->parent;
+				if (v)
+					v->parent = u->parent;
 			}
 
 			void	_deleteFix(node_pointer node)
@@ -456,7 +451,7 @@ namespace ft
 							x->color = BLACK;
 							node->parent->color = RED;
 							this->_leftRotate(node->parent);
-							x = node->parent->rightRotate;
+							x = node->parent->rightChild;
 						}
 						if ((!x->leftChild || x->leftChild->color == BLACK ) && (!x->rightChild || x->rightChild->color == BLACK))
 						{
@@ -497,7 +492,7 @@ namespace ft
 						}
 						else
 						{
-							if (!x->left || x->leftChild->color == BLACK)
+							if (!x->leftChild || x->leftChild->color == BLACK)
 							{
 								x->rightChild->color = BLACK;
 								x->color = RED;
