@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:51:17 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/30 07:02:00 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/30 08:41:08 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ namespace ft
 		typedef	typename	ft::RedBlackTree<value_type, key_compare>::iterator		iterator;
 		typedef	typename	ft::RedBlackTree<value_type, key_compare>::const_iterator			const_iterator;
 		typedef	typename	ft::reverse_iterator<iterator>							reverse_iterator;
-		typedef	typename	ft::reverse_iterator<const iterator>					const_reverse_iterator;
+		typedef	typename	ft::reverse_iterator<const_iterator>					const_reverse_iterator;
 		typedef	typename	allocator_type::difference_type							difference_type;
 		typedef	typename	allocator_type::size_type								size_type;
 		
@@ -173,7 +173,7 @@ namespace ft
 
 		reverse_iterator	rend(void)
 		{
-			return (const_reverse_iterator(this->_rbt.begin()));
+			return (reverse_iterator(this->_rbt.begin()));
 		}
 		
 		const_reverse_iterator	rend(void) const

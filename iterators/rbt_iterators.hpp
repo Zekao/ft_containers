@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 00:24:41 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/30 06:34:55 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/30 07:28:04 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,8 +208,8 @@ namespace ft {
 					if (this->_node->leftChild)
 					{
 						this->_node = this->_node->leftChild;
-						while (this->_node->right)
-							this->_node = this->_node->right;
+						while (this->_node->rightChild)
+							this->_node = this->_node->rightChild;
 					} 
 					else 
 					{

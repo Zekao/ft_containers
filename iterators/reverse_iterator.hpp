@@ -43,9 +43,9 @@ namespace ft
 				return ;
 			}
 			template <class IteratorCpy>
-			reverse_iterator (const reverse_iterator<IteratorCpy> &rhs)
+			reverse_iterator (const reverse_iterator<IteratorCpy> &rhs) : _it(rhs.base())
 			{
-				this->_it = rhs.base();
+				// this->_it = rhs.base();
 			}
 			~reverse_iterator()
 			{
