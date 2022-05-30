@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:51:17 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/30 08:41:08 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/30 09:06:05 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,12 +270,12 @@ namespace ft
 		/*													Operations											*/
 		/* ==================================================================================================== */
 		
-		iterator	find (const value_type & key)
+		iterator	find (const key_type & key)
 		{
 			return (this->_rbt.find(key));
 		}
 		
-		const_iterator	find (const value_type & key) const
+		const_iterator	find (const key_type & key) const
 		{
 			return (this->_rbt.find(key));
 		}
