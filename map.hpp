@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:51:17 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/30 06:14:23 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/30 07:02:00 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,16 @@ namespace ft
 		{
 			friend class ft::map<Key, T, Compare, Allocator>;
 			protected:
-				Compare comp;
-				value_compare(Compare c) : comp(c) { }
-				bool operator()( const value_type& lhs, const value_type& rhs ) const
-				{
-					return (comp(lhs, rhs));
-				}
+				key_compare comp;
+				value_compare(key_compare c) : comp(c) { }
+			public:
+					typedef bool result_type;
+					typedef value_type first_argument_type;
+					typedef value_type second_argument_type;
+					bool operator()( const value_type& lhs, const value_type& rhs ) const
+					{
+						return (comp(lhs.first, rhs.first));
+					}
 		};
 		typedef				Allocator												allocator_type;
 		typedef typename	allocator_type::reference								reference;
@@ -312,7 +316,7 @@ namespace ft
 		}
 		
 		private:
-		Compare															_compare;
+		key_compare														_compare;
 		allocator_type													_allocator;
 		size_type														_size;
 		RedBlackTree<value_type, key_compare>							_rbt;	
