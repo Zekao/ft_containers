@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 23:13:30 by emaugale          #+#    #+#             */
-/*   Updated: 2022/05/30 03:55:34 by emaugale         ###   ########.fr       */
+/*   Updated: 2022/05/30 10:07:32 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ namespace ft
 			vector (const vector& x)
 			{
 				this->_allocator = x._allocator;
-				this->_capacity = x._capacity;
+				this->_capacity = x._size;
 				this->_size = x._size;
 				this->_vector = x._vector;
 				if (this->_capacity)
@@ -333,7 +333,7 @@ namespace ft
 			void insert (iterator position, size_type n, const value_type& val)			
 			{
 				if (!n)
-					throw std::invalid_argument("n");
+					return ;
 				difference_type pos = position - this->_vector ;
 
 				if (n + this->_size > this->_capacity)
@@ -395,8 +395,8 @@ namespace ft
 
 			iterator erase(iterator first, iterator last)
 			{
-				size_type	pos = last - first;
-				for (size_type i = first - this->_vector; i < this->_size; i++)
+				size_type	pos = ft::distance(first, last);
+				for (size_type i = first - this->_vector; i < this->_size - pos; i++)
 				{
 					this->_allocator.destroy(&this->_vector[i]);
 					this->_allocator.construct(&this->_vector[i], this->_vector[i + pos]);
